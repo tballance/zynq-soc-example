@@ -1,0 +1,15 @@
+[package]
+name = "runtime"
+version = "0.1.0"
+authors = [ "TGB <TGB>" ]
+
+[build-dependencies]
+cc = "1.0"
+
+[dependencies]
+board = { path = "../libboard" }
+
+[lib]
+path = "main.rs"
+name = "runtime"
+crate-type = ["staticlib"]

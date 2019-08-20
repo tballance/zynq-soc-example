@@ -1,0 +1,34 @@
+#ifndef __CXX_ALGORITHM
+#define __CXX_ALGORITHM
+
+namespace std {
+  struct random_access_iterator_tag {};
+
+  template<class ForwardIt, class T>
+  ForwardIt upper_bound(ForwardIt first, ForwardIt last, const T& value) {
+      auto count = last - first;
+   
+      while (count > 0) {
+          auto it = first; 
+          const auto step = count / 2; 
+          it += step;
+          if (!(value < *it)) {
+              first = ++it;
+              count -= step + 1;
+          } else {
+              count = step;
+          }
+      }
+      return first;
+  }
+
+  template<class T> class numeric_limits;
+  template<>
+  class numeric_limits<uintptr_t> {
+  public:
+    typedef uintptr_t type;
+    inline static constexpr type max() noexcept { return __UINTPTR_MAX__; }
+  };
+}
+
+#endif /* __CXX_ALGORITHM */
